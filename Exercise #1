@@ -1,0 +1,30 @@
+
+#include <iostream>
+using namespace std;
+
+//(1A) way - ignore leading zeros
+
+int KthPalindrome(int k) {
+    int i = 1;
+//Palindrome can be only uneven because all
+// evens have different first and last bits.
+//That's why we'll not try evens
+    for (int c = 0; c < k; i+=2) {
+        int rev = 0, n = i;
+        while (n > 0) {
+            rev = rev*2 + n%2;
+            n /= 2;
+        }
+        if (rev == i) {
+            c++;
+        }
+    }
+    return i-2;
+}
+
+int main() {
+    int k;
+    cin >> k;
+    cout << "Kth palindrome is " << KthPalindrome(k);
+    return 0;
+}
